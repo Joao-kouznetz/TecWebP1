@@ -149,11 +149,18 @@ body {
 
 }
 
+.row-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .card-title {
   font-family: 'Permanent Marker', cursive;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
+
 
 .card-content {
   display: flex;

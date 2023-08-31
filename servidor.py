@@ -1,7 +1,8 @@
 import socket
 from pathlib import Path
 from utils import extract_route, read_file, build_response
-from views import index
+from views import index, delete, update, paginaedit
+import re
 
 CUR_DIR = Path(__file__).parent
 SERVER_HOST = '0.0.0.0'
@@ -20,14 +21,22 @@ while True:
     request = client_connection.recv(1024).decode()
     print('*'*100)
     print(request)
+   
 
     route = extract_route(request)
-
+    print(route)
     filepath = CUR_DIR / route
     if filepath.is_file():
         response = build_response() + read_file(filepath)
     elif route == '':
         response = index(request)
+    elif re.match(r'^delete\d+$', route):
+        response= delete(request)
+    elif re.match(r'^edit\d+$',route):
+        if request.startswith("POST"):
+            response=update(request,route)
+        else:
+            response=paginaedit(request)
     else:
         response = build_response()
 

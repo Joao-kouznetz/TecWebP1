@@ -26,7 +26,7 @@ class Database():
         return notes
     
     def update(self, entry):
-        self.cur.execute(f"UPDATE note SET title = '{entry.title}' , content = '{entry.content}' WHERE id= {entry.id}")
+        self.cur.execute(f"UPDATE note SET title = '{entry['title']}' , content = '{entry['content'] }' WHERE id= {entry['id']}")
         self.conn.commit()
 
     def delete(self, note_id):

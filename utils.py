@@ -24,11 +24,7 @@ def load_data():
     dados_transformados=[]
     notes = db.get_all()
     for i in notes:
-        titulo=i.title
-        titulo=titulo.replace("+"," ")
-        conteudo=i.content
-        conteudo=conteudo.replace("+"," ")
-        dados_transformados.append({'titulo':titulo, 'detalhes':conteudo})
+        dados_transformados.append({'id':i.id,'titulo':i.title, 'detalhes':i.content})
     return dados_transformados
     
     
