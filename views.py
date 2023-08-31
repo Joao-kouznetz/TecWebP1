@@ -1,4 +1,7 @@
-from utils import load_data, load_template, recebe, build_response
+from utils import load_data, load_template, adiciona_note, build_response
+from database import Database
+from database import Note 
+db = Database('banco')
 
 def index(request):
     # A string de request sempre começa com o tipo da requisição (ex: GET, POST)
@@ -18,7 +21,7 @@ def index(request):
             item=chave_valor.split("=")
             # itens=chave_valor.split("=")
             params[item[0]]=item[1]
-        recebe(params)
+        adiciona_note(params)
         return build_response(code=303, reason='See Other', headers='Location: /')
 
     # Cria uma lista de <li>'s para cada anotação

@@ -1,6 +1,11 @@
 import os
 import json
 
+from database import Database
+from database import Note 
+
+db = Database('banco')
+
 def extract_route(request):
     oi=request.split("/n")
     t=oi[0]
@@ -16,20 +21,19 @@ def read_file(Path):
         return conteudo
 
 def load_data(ar_json):
-    with open('data/' + ar_json, 'r') as arquivo:
-        return json.load(arquivo)
+    dados_transformados=[]
+    notes = db.get_all()
+    for i in notes:
+        dados_transformados.append({'titulo':i.title, 'detalhes':i.content})
+    return dados_transformados
+    
     
 def load_template(nome_arquivo):
     with open('templates/' + nome_arquivo, 'r') as arquivo:
         return arquivo.read()
     
-def recebe(dicionario):
-    with open("data/notes.json", "r") as data:
-        notas=json.load(data)
-    
-    notas.append(dicionario)
-    with open("data/notes.json", "w") as dat:
-       dat.write(json.dumps(notas, indent=4))
+def adiciona_note(dicionario):
+    db.add(Note(title=dicionario['titulo'], content=dicionario['detalhes']))
     
 def build_response(body='', code='200', reason='OK', headers=''):
     print("*************",headers)
