@@ -27,7 +27,7 @@ def load_data():
         titulo=i.title
         titulo=titulo.replace("+"," ")
         conteudo=i.content
-        conteudo=conteudo.replace("+", " ")
+        conteudo=conteudo.replace("+"," ")
         dados_transformados.append({'titulo':titulo, 'detalhes':conteudo})
     return dados_transformados
     
