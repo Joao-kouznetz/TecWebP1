@@ -20,11 +20,15 @@ def read_file(Path):
         conteudo=file.read()
         return conteudo
 
-def load_data(ar_json):
+def load_data():
     dados_transformados=[]
     notes = db.get_all()
     for i in notes:
-        dados_transformados.append({'titulo':i.title, 'detalhes':i.content})
+        titulo=i.title
+        titulo=titulo.replace("+"," ")
+        conteudo=i.content
+        conteudo=conteudo.replace("+", " ")
+        dados_transformados.append({'titulo':titulo, 'detalhes':conteudo})
     return dados_transformados
     
     
