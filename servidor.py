@@ -32,12 +32,12 @@ while True:
     elif re.match(r'^delete\d+$', route):
         response= delete(request)
     elif re.match(r'^edit\d+$',route):
-        if request.startswith("POST"):
-            response=update(request,route)
-        else:
             response=paginaedit(request,route)
     elif route=='home':
         response=home()
+    elif route=="update":
+        response=update(request,route)
+
     else:
         response = build_response()
 

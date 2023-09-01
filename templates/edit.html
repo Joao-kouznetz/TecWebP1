@@ -23,11 +23,12 @@
     <main class="container">
         <h1 class="form-card-title">Editando nota</h1>
         <form class="form-card" method="post">
+            <input class="hiden" type="text" name="id" value={id}></input>
             <input id="titulo" type="text" name="titulo" class="form-card-title" type="text" value="{titulo}" />
             <textarea id="detalhes" name="detalhes" class="autoresize">{conteudo}</textarea>
             <div class="container-button">
                 <button class="btn2n" type="submit" formaction="home">Cancelar</button>
-                <button class="btn2n" type="submit">Salvar</button>
+                <button class="btn2n" type="submit" formaction="update">Salvar</button>
             </div>
         </form>
 

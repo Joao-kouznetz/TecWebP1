@@ -65,7 +65,7 @@ def paginaedit(request,route):
             conteudo=note.content
     print('titulo',titulo)
     print('conteudo',conteudo)
-    return build_response(body=load_template('edit.html').format(titulo=titulo, conteudo=conteudo))
+    return build_response(body=load_template('edit.html').format(titulo=titulo, conteudo=conteudo, id=card_id))
 
 def update(request,route):
     request = request.replace('\r', '')  # Remove caracteres indesejados
@@ -79,13 +79,11 @@ def update(request,route):
     # Posteriormente pode ser interessante criar uma função que recebe a
     # requisição e devolve os parâmetros para desacoplar esta lógica.
     # Dica: use o método split da string e a função unquote_plus
-    id_match = route[4:] 
     for chave_valor in corpo.split('&'):
         item=chave_valor.split("=")
         # itens=chave_valor.split("=")
         item[1]=urllib.parse.unquote_plus(item[1], encoding='utf-8', errors='replace')
         params[item[0]]=item[1]
-    params['id']=id_match
     entry={'title': params['titulo'], 'content': params['detalhes'] , 'id': params['id'] }
     db.update(entry)
     return build_response(code=303, reason='See Other', headers='Location: /')

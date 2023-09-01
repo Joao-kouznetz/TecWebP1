@@ -265,3 +265,10 @@ body {
   display: flex;
   justify-content: center;
 }
+
+.hiden {
+
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
