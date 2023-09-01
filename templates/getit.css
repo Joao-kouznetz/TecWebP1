@@ -267,8 +267,13 @@ body {
 }
 
 .hiden {
-
   display: none;
   visibility: hidden;
-  opacity: 0;
+}
+
+.emcima {
+  font-size: 2rem;
+  font-weight: 200;
+  font-style: italic;
+  font-family: 'Permanent Marker', cursive;
 }
