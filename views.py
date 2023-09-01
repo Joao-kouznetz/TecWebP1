@@ -90,3 +90,6 @@ def update(request,route):
 
 def home():
     return build_response(code=303, reason='See Other', headers='Location: /')
+def erro():
+    return build_response(body=load_template('404.html'))
+    # return build_response(code=404)

@@ -1,7 +1,7 @@
 import socket
 from pathlib import Path
 from utils import extract_route, read_file, build_response
-from views import index, delete, update, paginaedit,home
+from views import index, delete, update, paginaedit,home,erro
 import re
 
 CUR_DIR = Path(__file__).parent
@@ -37,9 +37,8 @@ while True:
         response=home()
     elif route=="update":
         response=update(request,route)
-
     else:
-        response = build_response()
+        response = erro()
 
     client_connection.sendall(response)
 
