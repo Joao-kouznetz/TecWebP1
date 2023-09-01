@@ -224,3 +224,44 @@ body {
   transform: rotate(0deg);
   background-color: #fae890;
 }
+
+.container-button {
+  display: flex;
+  flex-direction: row;
+  width: 100%s;
+  justify-content: space-around;
+}
+
+.btn1n {
+  width: 100%;
+  overflow: hidden;
+
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+
+  background-color: #f7d736;
+
+  transition: background-color 0.3s;
+}
+
+.btn2n {
+  width: 45%;
+  overflow: hidden;
+
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+
+  background-color: #f7d736;
+
+  transition: background-color 0.3s;
+}
+
+.home {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+}

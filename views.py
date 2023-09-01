@@ -90,3 +90,5 @@ def update(request,route):
     db.update(entry)
     return build_response(code=303, reason='See Other', headers='Location: /')
 
+def home():
+    return build_response(code=303, reason='See Other', headers='Location: /')
