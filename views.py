@@ -8,7 +8,6 @@ import re
 def index(request):
     # A string de request sempre começa com o tipo da requisição (ex: GET, POST)
     if request.startswith('POST'):
-        print("entrou nesse post")
         request = request.replace('\r', '')  # Remove caracteres indesejados
         # Cabeçalho e corpo estão sempre separados por duas quebras de linha
         partes = request.split('\n\n')
@@ -51,20 +50,22 @@ def delete(request):
 
     return build_response(code=303, reason='See Other', headers='Location: /')
 
-def paginaedit(request):
-    # request = request.replace('\r', '')  # Remove caracteres indesejados
-    # # Cabeçalho e corpo estão sempre separados por duas quebras de linha
-    # partes = request.split('\n\n')
-    # corpo = partes[1]
-    # params = {
-    # }
-    # for chave_valor in corpo.split('&'):
-    #     item=chave_valor.split("=")
-    #     # itens=chave_valor.split("=")
-    #     item[1]=urllib.parse.unquote_plus(item[1], encoding='utf-8', errors='replace')
-    #     params[item[0]]=item[1]
-
-    return build_response(body=load_template('edit.html'))
+def paginaedit(request,route):
+    card_id = route[4:]
+    print(card_id, "---------------------------------------")
+    todos=db.get_all()
+    titulo='titulo'
+    conteudo='conteudo'
+    for note in todos:
+        print(note.id, 'note_____id')
+        print(card_id, 'card---id')
+        if int(note.id)==int(card_id):
+            print('entrou')
+            titulo=note.title
+            conteudo=note.content
+    print('titulo',titulo)
+    print('conteudo',conteudo)
+    return build_response(body=load_template('edit.html').format(titulo=titulo, conteudo=conteudo))
 
 def update(request,route):
     request = request.replace('\r', '')  # Remove caracteres indesejados
@@ -86,7 +87,6 @@ def update(request,route):
         params[item[0]]=item[1]
     params['id']=id_match
     entry={'title': params['titulo'], 'content': params['detalhes'] , 'id': params['id'] }
-    print(entry)
     db.update(entry)
     return build_response(code=303, reason='See Other', headers='Location: /')
 

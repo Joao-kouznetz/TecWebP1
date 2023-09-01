@@ -24,7 +24,6 @@ while True:
    
 
     route = extract_route(request)
-    print(route)
     filepath = CUR_DIR / route
     if filepath.is_file():
         response = build_response() + read_file(filepath)
@@ -36,7 +35,7 @@ while True:
         if request.startswith("POST"):
             response=update(request,route)
         else:
-            response=paginaedit(request)
+            response=paginaedit(request,route)
     else:
         response = build_response()
 
